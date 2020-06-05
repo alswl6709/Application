@@ -75,15 +75,23 @@ public class MypageActivity extends AppCompatActivity {
                             break;
                         case 1:
                             Toast.makeText(getApplicationContext(),"child_list: "+childPosition,Toast.LENGTH_LONG).show();
+                            Intent listIntent = new Intent(getApplicationContext(), PlanlistActivity.class);
+                            startActivity(listIntent);
                             break;
                     }
                 }else if(groupPosition == 1){
                     switch(childPosition){
                         case 0:
                             Toast.makeText(getApplicationContext(),"child_list: "+childPosition,Toast.LENGTH_LONG).show();
+                            //이렇게하면 툴바 이름 못바꿈...그럼 프래그먼트 이용..?
+                            //아니면 Planlistactivity 정보 intent 이용해서 가져오기..?
+                            Intent listIntent = new Intent(getApplicationContext(), PlanlistActivity.class);
+                            startActivity(listIntent);
                             break;
                         case 1:
                             Toast.makeText(getApplicationContext(),"child_list: "+childPosition,Toast.LENGTH_LONG).show();
+                           // Intent PlistIntent = new Intent(getApplicationContext(), PlanlistActivity.class);
+                           // startActivity(PlistIntent);
                             break;
                     }
                 }else{

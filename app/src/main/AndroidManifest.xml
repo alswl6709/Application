@@ -9,8 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PlanActivity"
+        <activity android:name=".PlanlistActivity"
             android:parentActivityName=".MypageActivity"></activity>
+
+        <activity
+            android:name=".PlanActivity"
+            android:parentActivityName=".MypageActivity" />
         <activity
             android:name=".SettingActivity"
             android:parentActivityName=".MainActivity" />
