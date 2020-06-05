@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
                 //if(id와 비번 불일치) ->  toast:ID와 PW가 일치하지 않습니다 + text clear
 
                 //if (선호태그 등록x)
-                //Intent tag = new Intent(LoginActivity.this, page3.class);
+                //Intent tag = new Intent(LoginActivity.this, TagActivity.class);
                 //startActivity(tag);
 
                 //if 선호태그 등록완료
@@ -66,8 +66,8 @@ public class LoginActivity extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // Intent p2 = new Intent(LoginActivity.this, page2.class);
-                //startActivity(p2);
+               Intent signup = new Intent(LoginActivity.this, SignupActivity.class);
+                startActivity(signup);
             }
         });
 
@@ -76,8 +76,8 @@ public class LoginActivity extends AppCompatActivity {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent p4 = new Intent(LoginActivity.this, page4.class);
-                //startActivity(p4);
+                Intent find = new Intent(LoginActivity.this, FindinfoActivity.class);
+               startActivity(find);
             }
         });
     }}
