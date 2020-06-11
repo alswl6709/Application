@@ -1,22 +1,16 @@
 package org.techtown.application;
 
-import android.app.Activity;
-
-import androidx.lifecycle.Observer;
-
-
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
+
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -24,40 +18,67 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.techtown.application.R;
-//import org.techtown.application.page2;
-//import org.techtown.application.page3;
-//import org.techtown.application.page4;
-//import org.techtown.application.page5;
 
 
 public class LoginActivity extends AppCompatActivity {
+
+    public static Context context;
+    SQLiteDatabase database;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        //loginViewModel = ViewModelProviders.of(this, new LoginViewModelFactory()).get(LoginViewModel.class);
 
+        final LoginDB db= new LoginDB(getApplicationContext(),"LoginDB.db",null,1);
         final EditText usernameEditText = findViewById(R.id.username);
         final EditText passwordEditText = findViewById(R.id.password);
-        final Button loginButton = findViewById(R.id.login);
-        final ProgressBar loadingProgressBar = findViewById(R.id.loading);
 
         //로그인버튼
         Button login = (Button) findViewById(R.id.login);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //if(id와 비번 불일치) ->  toast:ID와 PW가 일치하지 않습니다 + text clear
+                String id= usernameEditText.getText().toString();
+                String pw= passwordEditText.getText().toString();
 
-                //if (선호태그 등록x)
-                //Intent tag = new Intent(LoginActivity.this, TagActivity.class);
-                //startActivity(tag);
+                database=db.getReadableDatabase();
 
-                //if 선호태그 등록완료
-                Intent main = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(main);
+                if(id.length()==0||pw.length()==0){ //비어있을때
+                   Toast.makeText(getApplicationContext(), "id와 pw을 입력하세요!", Toast.LENGTH_LONG).show();
+                }
 
+                Cursor cusor1= database.rawQuery("SELECT pw FROM LoginDB WHERE id = '" + id +"';",null);
+
+                if(cusor1.getCount()==0){   //해당 id가 없을때
+                    Toast.makeText(getApplicationContext(), "id를 다시확인하세요!", Toast.LENGTH_LONG).show();
+                    usernameEditText.setText(""); //+ text clear
+                    passwordEditText.setText("");
+                }
+                else {
+                    if (cusor1.moveToFirst() && !pw.equals(cusor1.getString(cusor1.getColumnIndex("pw")))) { // 비번 틀렸을때
+                        Toast.makeText(getApplicationContext(), "pw를 다시확인하세요!", Toast.LENGTH_LONG).show();
+                        usernameEditText.setText(""); //+ text clear
+                        passwordEditText.setText("");
+                    }
+                    else{ //id pw 둘다 맞으면
+                        Cursor cusor3= database.rawQuery("SELECT area FROM LoginDB WHERE id = '" + id +"';",null);
+                        cusor3.moveToFirst();
+                        System.out.println(cusor3.getString(cusor3.getColumnIndex("area")));
+
+                        //if (선호태그 등록x)
+                        if(cusor3.moveToFirst() &&cusor3.getString(cusor3.getColumnIndex("area"))==null){
+                            Intent tag = new Intent(LoginActivity.this, TagActivity.class);
+                            tag.putExtra("id",id);
+                            startActivity(tag);
+                        }
+                        else {//선호태그 등록O
+                            Intent main = new Intent(LoginActivity.this, MainActivity.class);
+                            main.putExtra("id",id);
+                            startActivity(main);
+                        }
+                    }
+                }
             }
         });
 
@@ -66,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               Intent signup = new Intent(LoginActivity.this, SignupActivity.class);
+                Intent signup = new Intent(LoginActivity.this, SignupActivity.class);
                 startActivity(signup);
             }
         });
@@ -80,4 +101,22 @@ public class LoginActivity extends AppCompatActivity {
                startActivity(find);
             }
         });
+
+
+
+        //DB체크용 버튼 점검 후 삭제예정!
+        //현재 등록된 유저-> name:ey / email:1234@gmail.com / id: manager1 / pw: 1234 [태그 등록O 유저]
+        Button test = (Button)findViewById(R.id.button_dbtest);
+        test.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                String id= usernameEditText.getText().toString();
+
+                //전체조회
+
+                database=db.getReadableDatabase();
+                String a=db.getResult();
+                System.out.println(a);
+            }
+        });
+
     }}
