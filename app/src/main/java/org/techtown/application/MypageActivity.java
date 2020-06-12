@@ -11,6 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -23,6 +25,10 @@ public class MypageActivity extends AppCompatActivity {
 
     ActionBar actionBar;
     Toolbar toolbar;
+    //DB에 저장된 이름 이메일 사진 가져오기
+   // ImageView image;
+   // TextView name;
+   // TextView email;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,7 +81,7 @@ public class MypageActivity extends AppCompatActivity {
                             break;
                         case 1:
                             Toast.makeText(getApplicationContext(),"child_list: "+childPosition,Toast.LENGTH_LONG).show();
-                            Intent listIntent = new Intent(getApplicationContext(), PlanlistActivity.class);
+                            Intent listIntent = new Intent(MypageActivity.this, PlanlistActivity.class);
                             startActivity(listIntent);
                             break;
                     }
@@ -85,8 +91,8 @@ public class MypageActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(),"child_list: "+childPosition,Toast.LENGTH_LONG).show();
                             //이렇게하면 툴바 이름 못바꿈...그럼 프래그먼트 이용..?
                             //아니면 Planlistactivity 정보 intent 이용해서 가져오기..?
-                            Intent listIntent = new Intent(getApplicationContext(), PlanlistActivity.class);
-                            startActivity(listIntent);
+                         //   Intent listIntent = new Intent(getApplicationContext(), PlanlistActivity.class);
+                         //   startActivity(listIntent);
                             break;
                         case 1:
                             Toast.makeText(getApplicationContext(),"child_list: "+childPosition,Toast.LENGTH_LONG).show();
@@ -133,7 +139,8 @@ public class MypageActivity extends AppCompatActivity {
         Child child = new Child();
 
         //1
-        parent.setData("나의여행계획");
+
+        parent.setData("   나의여행계획");
         child.setChildData("여행계획세우기");
         listChild.add(child);
 
@@ -149,7 +156,7 @@ public class MypageActivity extends AppCompatActivity {
         listChild = new ArrayList<Child>();
         child = new Child();
 
-        parent.setData("나의여행기록");
+        parent.setData("   나의여행기록");
         child.setChildData("여행기록하기");
         listChild.add(child);
 
@@ -165,7 +172,7 @@ public class MypageActivity extends AppCompatActivity {
         listChild = new ArrayList<Child>();
         child = new Child();
 
-        parent.setData("나의위시리스트");
+        parent.setData("   나의위시리스트");
         child.setChildData("나의위시리스트");
         listChild.add(child);
 
