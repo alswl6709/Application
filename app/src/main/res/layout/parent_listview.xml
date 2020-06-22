@@ -9,9 +9,9 @@
         android:id="@+id/parentText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
+
+        android:background="#BDBDBD"
         android:padding="10dp"
         android:text="Parent TextView"
-        android:textColor="#AA000000"
-        android:background="#BDBDBD"/>
+        android:textColor="#AA000000" />
 </LinearLayout>

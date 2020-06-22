@@ -6,15 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ExpandableListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -27,27 +23,10 @@ public class MypageActivity extends AppCompatActivity {
 
     ActionBar actionBar;
     Toolbar toolbar;
-    SQLiteDatabase database;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mypage);
-
-        /* mypage id와 email 가져오는 부분 -> 성공시 주석 해제할예정..!
-        final LoginDB db= new LoginDB(getApplicationContext(),"LoginDB.db",null,1);
-        final TextView id2 = findViewById(R.id.textView_mpid);
-        final TextView email2 = findViewById(R.id.textView_mpem);
-        database=db.getReadableDatabase();
-        Intent mypage= getIntent();
-        String id= mypage.getStringExtra("id");
-
-        //Cursor cusor1= database.rawQuery("SELECT email FROM LoginDB WHERE id = '" + id +"';",null);
-        //String email=cusor1.getString(cusor1.getColumnIndex("email"));
-
-        id2.setText(id+"님");
-        //email2.setText(email);
-        --------------------------------------*/
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -146,7 +125,6 @@ public class MypageActivity extends AppCompatActivity {
         });
 
 
-
     }
     private void loadParentData(){
         Parent parent = new Parent();
@@ -223,7 +201,6 @@ public class MypageActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 
 
 
