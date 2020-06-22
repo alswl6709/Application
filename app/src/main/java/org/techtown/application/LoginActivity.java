@@ -105,7 +105,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         //DB체크용 버튼 점검 후 삭제예정!
-        //현재 등록된 유저-> name:ey / email:1234@gmail.com / id: manager1 / pw: 1234 [태그 등록O 유저]
+        //현재 등록된 유저-> name:ey / email:1234@gmail.com / id: manager1 / pw: 1234 [태그 등록X 유저]
         Button test = (Button)findViewById(R.id.button_dbtest);
         test.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
@@ -114,6 +114,8 @@ public class LoginActivity extends AppCompatActivity {
                 //전체조회
 
                 database=db.getReadableDatabase();
+               // db.delete(id="ey");
+
                 String a=db.getResult();
                 System.out.println(a);
             }

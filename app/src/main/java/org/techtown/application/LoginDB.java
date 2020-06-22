@@ -35,7 +35,7 @@ public class LoginDB extends SQLiteOpenHelper {
 
     public void insert(String name, String email, String id, String pw){ //기본정보만 insert하는 함수
         SQLiteDatabase db= getWritableDatabase(); //db열기
-        email=email.replace("@","||CHR(64)||");
+
         db.execSQL("Insert into LoginDB values('"+
                 name+"','"+ email+"','"+ id+"','"+ pw+"',"+ "null,null,null);");
         db.close(); //db닫기
@@ -43,10 +43,6 @@ public class LoginDB extends SQLiteOpenHelper {
 
     public void insertTag(String id,String area, String taste, String etc){ // tag insert하는 함수
         SQLiteDatabase db= getWritableDatabase(); //db열기
-
-        area=area.replace("#",",");
-        taste=taste.replace("#",",");
-        etc=etc.replace("#",",");
 
         db.execSQL("Update LoginDB SET area='"+area+"'" +
                 ","+"taste='"+taste+"'" + ","+"etc='"+etc+"' where id='"+id+"'");
@@ -60,7 +56,7 @@ public class LoginDB extends SQLiteOpenHelper {
 
     public void delete(String id){ //회원정보 삭제
         SQLiteDatabase db= getWritableDatabase();
-        db.execSQL("delete * from LoginDB where id='"+id+"';");
+        db.execSQL("delete from LoginDB where id='"+id+"';");
         db.close();
     }
 

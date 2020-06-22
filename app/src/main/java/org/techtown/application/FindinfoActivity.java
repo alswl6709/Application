@@ -41,18 +41,29 @@ public class FindinfoActivity extends AppCompatActivity {
                database=db.getReadableDatabase();
 
                Cursor cusor1= database.rawQuery("select id,pw from LoginDB where name='"+name+"'&"+"email='"+email+"';",null);
-              // Cursor cusor2= database.rawQuery("select pw from LoginDB where name='"+name+"'&"+"email='"+email+"';",null);
+              //Cursor cusor2= database.rawQuery("select  from LoginDB where name='"+name+"'&"+"email='"+email+"';",null);
 
-                if(!name.equals(cusor1.getString(cusor1.getColumnIndex("id")))){ //(DB에 저장된 id와 이메일이 같지 않다면 or id존재X)
-                    resultinfo.setText("등록된 ID가 존재하지 않습니다.");
+
+                cusor1.moveToFirst();
+
+                    if(!name.equals(cusor1.getString(cusor1.getColumnIndex("id")))){ //(DB에 저장된 id와 이메일이 같지 않다면 or id존재X)
+                        resultinfo.setText("등록된 ID가 존재하지 않습니다.");
+
+                    }
+                    else{ //id 이메일 일치
+                        resultinfo.setText("id: "+ cusor1.getString(cusor1.getColumnIndex("id"))
+                                +"\n pw: "+ cusor1.getString(cusor1.getColumnIndex("pw")) );
+                    }
+
+
+
+
+
+
 
                 }
-                else{ //id 이메일 일치
-                    resultinfo.setText("id: "+ cusor1.getString(cusor1.getColumnIndex("id"))
-                            +"\n pw: "+ cusor1.getString(cusor1.getColumnIndex("pw")) );
-                }
 
-            }
+
         });
 
         //처음으로 돌아가기 버튼
