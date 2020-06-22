@@ -40,8 +40,11 @@ public class PlanlistActivity extends AppCompatActivity {
 
         adapter = new PlanlistAdapter();
 
-        //예시 나중에는 PlanActivity 데이터 받아오기
+        //예시 나중에는 PlanActivity2 데이터 받아오기
+
         adapter.addItem(new Planlist("제주도","2020","06","12"));
+      //  adapter.addItem(new Planlist());
+
 
         recyclerView.setAdapter(adapter);
 
