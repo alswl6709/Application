@@ -27,6 +27,26 @@
         android:layout_height="340dp"
         class="com.google.android.gms.maps.MapFragment" />
 
+    <Button
+        android:id="@+id/main_recommend"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:text="추천장소 알아보기" />
+
+    <Button
+        android:id="@+id/main_showlist"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:text="예정된 일정 확인하기" />
+
+    <Button
+        android:id="@+id/main_addwishlist"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:text="위시리스트에 추가하기" />
 
 
 </LinearLayout>

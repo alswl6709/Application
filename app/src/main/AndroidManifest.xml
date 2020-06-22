@@ -14,9 +14,13 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyC05iHVvF5g4SWEVHZQksgFQ0gfK-5ZuEc" />
 
+
+
         <activity android:name=".FindinfoActivity" />
         <activity android:name=".TagActivity" />
         <activity android:name=".SignupActivity" />
+        <activity android:name=".PlanActivity2" />
+        <activity android:name=".PlanlistActivity" />
         <activity
             android:name=".PlanActivity"
             android:parentActivityName=".MypageActivity" />
