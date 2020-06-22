@@ -23,7 +23,8 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="10dp"
-                app:srcCompat="@drawable/flower" />
+                />
+            <!-- 파일없어서 일단 주석처리함!!> app:srcCompat="@drawable/flower"-->
 
             <LinearLayout
                 android:layout_width="match_parent"

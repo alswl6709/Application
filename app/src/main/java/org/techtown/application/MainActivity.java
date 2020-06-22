@@ -31,12 +31,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FragmentManager fragmentManager = getFragmentManager();
-        MapFragment mapFragment = (MapFragment)fragmentManager
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
-
-
        // actionBar = getSupportActionBar();
         //actionBar.setTitle("main menu");
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -48,6 +42,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         actionBar.setTitle("main");
        // actionBar.setDisplayShowTitleEnabled(false);
        // actionBar.setDisplayHomeAsUpEnabled(true);
+
+        FragmentManager fragmentManager = getFragmentManager();
+        MapFragment mapFragment = (MapFragment)fragmentManager
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+
     }
 
     @Override

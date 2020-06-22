@@ -43,7 +43,6 @@ public class LoginDB extends SQLiteOpenHelper {
 
     public void insertTag(String id,String area, String taste, String etc){ // tag insert하는 함수
         SQLiteDatabase db= getWritableDatabase(); //db열기
-
         db.execSQL("Update LoginDB SET area='"+area+"'" +
                 ","+"taste='"+taste+"'" + ","+"etc='"+etc+"' where id='"+id+"'");
         db.close(); //db닫기
